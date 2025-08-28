@@ -8,4 +8,3 @@ subnet2_cidr_prefix = "192.178.2.0/24"
 nsg_rule1 = "rdp"
 vmname = "terrraformvm1"
 vmsize = "Standard_D2s_v3"
-
