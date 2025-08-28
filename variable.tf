@@ -56,7 +56,7 @@ variable "vmname" {
 variable "vmsize" {
     type = string
     description = "this the size of vm"
-    default = "Standard_D2s_v3"
+    
   
 }
 
