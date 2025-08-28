@@ -9,10 +9,10 @@ terraform {
 
 provider "azurerm" {
   
-    subscription_id = "# here we have to use our subscription id"
-    client_id = "# Here  we have to use service principal application id"
-    client_secret = "# Here we have to use our Service principal client_secret value"
-    tenant_id = "# here we have to use our organization tenent id"
+    subscription_id = "6dc04dce-61ca-4a0a-a008-d5a5e06b8b1a"
+    client_id = "262befed-62f1-4ae3-9f89-3d15b75b4bc0"
+    client_secret = "9G68Q~1IHAFNbcdozwrZdx7dqCtoauPJFft2Tdj7"
+    tenant_id = "000cbff9-0cf0-4826-88f4-e8d0f8d13de3"
     features {
       
     }
@@ -90,13 +90,29 @@ resource "azurerm_windows_virtual_machine" "vm1" {
   source_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer = "WindowsServer"
-    sku = "2022-Datacenter"
+    sku = "2025-datacenter-azure-edition"
     version = "latest"
     }
 
+//  source_image_id = "/subscriptions/6dc04dce-61ca-4a0a-a008-d5a5e06b8b1a/resourceGroups/Project/providers/Microsoft.Compute/galleries/railrootimage/images/railrootvm-windowsserver2025/versions/0.0.1"
+
   os_disk {
+    name                 = "terrraformvm1-osdisk"
+    caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
-    caching = "ReadWrite"
-  }  
-  
+  }
+
+  patch_mode = "AutomaticByPlatform"
+
+
+//  security_type = "TrustedLaunch"
+
+/*  security_profile {
+    secure_boot_enabled = true
+    vtpm_enabled        = true
+  }*/
+
+  tags = {
+    environment = "Test"
+  }
 }
